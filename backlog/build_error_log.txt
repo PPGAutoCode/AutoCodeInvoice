@@ -1,0 +1,11 @@
+Error: /Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Controllers/AttachmentsController.cs(47,39): error CS1010: Newline in constant
+Error: /Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Controllers/AttachmentsController.cs(47,45): error CS1002: ; expected
+Error: /Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Controllers/AttachmentsController.cs(47,45): error CS1026: ) expected
+Error: /Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Controllers/AttachmentsController.cs(47,45): error CS1513: } expected
+Error: /Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(14,6): error CS1519: Invalid token '{' in class, record, struct, or interface member declaration
+Error: /Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(48,6): error CS1519: Invalid token '{' in class, record, struct, or interface member declaration
+Error: /Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(85,6): error CS1022: Type or namespace definition, or end-of-file expected
+Error: /Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(86,1): error CS1022: Type or namespace definition, or end-of-file expected
+Error: /Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(86,2): error CS1022: Type or namespace definition, or end-of-file expected
+Error: /Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(9,2): error CS1022: Type or namespace definition, or end-of-file expected
+Error: 10 Error(s)

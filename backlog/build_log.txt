@@ -1,0 +1,34 @@
+Microsoft (R) Build Engine version 17.0.1+b177f8fa7 for .NET
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+/usr/local/share/dotnet/sdk/6.0.129/Sdks/Microsoft.NET.Sdk.Razor/targets/Sdk.Razor.CurrentVersion.targets(443,5): warning RAZORSDK1006: Detected Razor language version downgrade. This is typically caused by a reference to the Microsoft.AspNetCore.Razor.Design package. Consider removing this package reference. [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Controllers/AttachmentsController.cs(47,39): error CS1010: Newline in constant [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Controllers/AttachmentsController.cs(47,45): error CS1026: ) expected [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Controllers/AttachmentsController.cs(47,45): error CS1002: ; expected [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Controllers/AttachmentsController.cs(47,45): error CS1513: } expected [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(9,2): error CS1022: Type or namespace definition, or end-of-file expected [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(14,6): error CS1519: Invalid token '{' in class, record, struct, or interface member declaration [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(48,6): error CS1519: Invalid token '{' in class, record, struct, or interface member declaration [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(85,6): error CS1022: Type or namespace definition, or end-of-file expected [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(86,1): error CS1022: Type or namespace definition, or end-of-file expected [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(86,2): error CS1022: Type or namespace definition, or end-of-file expected [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+
+Build FAILED.
+
+/usr/local/share/dotnet/sdk/6.0.129/Sdks/Microsoft.NET.Sdk.Razor/targets/Sdk.Razor.CurrentVersion.targets(443,5): warning RAZORSDK1006: Detected Razor language version downgrade. This is typically caused by a reference to the Microsoft.AspNetCore.Razor.Design package. Consider removing this package reference. [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Controllers/AttachmentsController.cs(47,39): error CS1010: Newline in constant [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Controllers/AttachmentsController.cs(47,45): error CS1026: ) expected [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Controllers/AttachmentsController.cs(47,45): error CS1002: ; expected [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Controllers/AttachmentsController.cs(47,45): error CS1513: } expected [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(9,2): error CS1022: Type or namespace definition, or end-of-file expected [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(14,6): error CS1519: Invalid token '{' in class, record, struct, or interface member declaration [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(48,6): error CS1519: Invalid token '{' in class, record, struct, or interface member declaration [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(85,6): error CS1022: Type or namespace definition, or end-of-file expected [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(86,1): error CS1022: Type or namespace definition, or end-of-file expected [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/Interfaces/Interfaces.cs(86,2): error CS1022: Type or namespace definition, or end-of-file expected [/Users/dagnikos/Projects/AutoCode/tempcode/ProjectName/ProjectName.csproj]
+    1 Warning(s)
+    10 Error(s)
+
+Time Elapsed 00:00:01.94

@@ -1,0 +1,9 @@
+
+CREATE TABLE InvoiceAttachment (
+    Id INT NOT NULL UNIQUE,
+    InvoiceId UNIQUEIDENTIFIER NOT NULL,
+    FileId INT NOT NULL,
+    IsReceived BOOLEAN NOT NULL,
+    PRIMARY KEY (Id)
+);
+
