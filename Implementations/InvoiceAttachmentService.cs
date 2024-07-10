@@ -23,10 +23,9 @@ namespace ProjectName.Services
         public async Task AddInvoiceAttachmentsAsync(Guid invoiceId, List<int> fileIds)
         {
             if (invoiceId == Guid.Empty)
-                throw new BusinessException(400, "One or more validation errors occurred.", "InvoiceId must not be empty.");
-
+                throw new BusinessException("InvalidInvoiceId", "Invoice ID cannot be empty.");
             if (fileIds == null || !fileIds.Any())
-                throw new BusinessException(400, "One or more validation errors occurred.", "FileIds must not be null or empty.");
+                throw new BusinessException("InvalidFileIds", "File IDs cannot be null or empty.");
 
             var invoiceAttachments = fileIds.Select(fileId => new InvoiceAttachment
             {
@@ -50,7 +49,7 @@ namespace ProjectName.Services
         public async Task<bool> InvoiceExistsAsync(Guid invoiceId)
         {
             if (invoiceId == Guid.Empty)
-                throw new BusinessException(400, "One or more validation errors occurred.", "InvoiceId must not be empty.");
+                throw new BusinessException("InvalidInvoiceId", "Invoice ID cannot be empty.");
 
             const string sql = @"
                 SELECT COUNT(1) 
@@ -65,7 +64,9 @@ namespace ProjectName.Services
         public async Task<bool> AttachmentBelongsToInvoiceAsync(Guid invoiceId, int attachmentId)
         {
             if (invoiceId == Guid.Empty)
-                throw new BusinessException(400, "One or more validation errors occurred.", "InvoiceId must not be empty.");
+                throw new BusinessException("InvalidInvoiceId", "Invoice ID cannot be empty.");
+            if (attachmentId <= 0)
+                throw new BusinessException("InvalidAttachmentId", "Attachment ID must be greater than zero.");
 
             const string sql = @"
                 SELECT COUNT(1) 
@@ -79,6 +80,9 @@ namespace ProjectName.Services
 
         public async Task MarkAsReceivedAsync(int fileId)
         {
+            if (fileId <= 0)
+                throw new BusinessException("InvalidFileId", "File ID must be greater than zero.");
+
             const string sql = @"
                 UPDATE InvoiceAttachments 
                 SET IsReceived = 1 
@@ -91,7 +95,7 @@ namespace ProjectName.Services
         public async Task<bool> AllAttachmentsReceivedAsync(Guid invoiceId)
         {
             if (invoiceId == Guid.Empty)
-                throw new BusinessException(400, "One or more validation errors occurred.", "InvoiceId must not be empty.");
+                throw new BusinessException("InvalidInvoiceId", "Invoice ID cannot be empty.");
 
             const string sql = @"
                 SELECT COUNT(1) 
