@@ -17,7 +17,7 @@ namespace ProjectName.Services
 
         public InvoiceAttachmentService(IDbConnection dbConnection)
         {
-            _dbConnection = dbConnection ?? throw new ArgumentNullException(nameof(dbConnection));
+            _dbConnection = dbConnection;
         }
 
         public async Task AddInvoiceAttachmentsAsync(Guid invoiceId, List<int> fileIds)
