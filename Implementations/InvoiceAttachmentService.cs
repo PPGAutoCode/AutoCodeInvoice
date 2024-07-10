@@ -23,10 +23,10 @@ namespace ProjectName.Services
         public async Task AddInvoiceAttachmentsAsync(Guid invoiceId, List<int> fileIds)
         {
             if (invoiceId == Guid.Empty)
-                throw new BusinessException("InvalidInvoiceId", "InvoiceId cannot be empty.");
+                throw new BusinessException("InvalidInvoiceId", "Invoice ID cannot be empty.");
 
             if (fileIds == null || !fileIds.Any())
-                throw new BusinessException("InvalidFileIds", "FileIds cannot be null or empty.");
+                throw new BusinessException("InvalidFileIds", "File IDs cannot be null or empty.");
 
             var invoiceAttachments = fileIds.Select(fileId => new InvoiceAttachment
             {
@@ -41,23 +41,16 @@ namespace ProjectName.Services
                 VALUES (@Id, @InvoiceId, @FileId, @IsReceived);
             ";
 
-            try
+            foreach (var attachment in invoiceAttachments)
             {
-                foreach (var invoiceAttachment in invoiceAttachments)
-                {
-                    await _dbConnection.ExecuteAsync(sql, invoiceAttachment);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new TechnicalException("DatabaseError", $"Error adding invoice attachments: {ex.Message}");
+                await _dbConnection.ExecuteAsync(sql, attachment);
             }
         }
 
         public async Task<bool> InvoiceExistsAsync(Guid invoiceId)
         {
             if (invoiceId == Guid.Empty)
-                throw new BusinessException("InvalidInvoiceId", "InvoiceId cannot be empty.");
+                throw new BusinessException("InvalidInvoiceId", "Invoice ID cannot be empty.");
 
             const string sql = @"
                 SELECT COUNT(1) 
@@ -65,21 +58,14 @@ namespace ProjectName.Services
                 WHERE InvoiceId = @InvoiceId;
             ";
 
-            try
-            {
-                var count = await _dbConnection.ExecuteScalarAsync<int>(sql, new { InvoiceId = invoiceId });
-                return count > 0;
-            }
-            catch (Exception ex)
-            {
-                throw new TechnicalException("DatabaseError", $"Error checking if invoice exists: {ex.Message}");
-            }
+            var count = await _dbConnection.ExecuteScalarAsync<int>(sql, new { InvoiceId = invoiceId });
+            return count > 0;
         }
 
         public async Task<bool> AttachmentBelongsToInvoiceAsync(Guid invoiceId, int attachmentId)
         {
             if (invoiceId == Guid.Empty)
-                throw new BusinessException("InvalidInvoiceId", "InvoiceId cannot be empty.");
+                throw new BusinessException("InvalidInvoiceId", "Invoice ID cannot be empty.");
 
             const string sql = @"
                 SELECT COUNT(1) 
@@ -87,39 +73,28 @@ namespace ProjectName.Services
                 WHERE InvoiceId = @InvoiceId AND FileId = @FileId;
             ";
 
-            try
-            {
-                var count = await _dbConnection.ExecuteScalarAsync<int>(sql, new { InvoiceId = invoiceId, FileId = attachmentId });
-                return count > 0;
-            }
-            catch (Exception ex)
-            {
-                throw new TechnicalException("DatabaseError", $"Error checking if attachment belongs to invoice: {ex.Message}");
-            }
+            var count = await _dbConnection.ExecuteScalarAsync<int>(sql, new { InvoiceId = invoiceId, FileId = attachmentId });
+            return count > 0;
         }
 
         public async Task MarkAsReceivedAsync(int fileId)
         {
+            if (fileId <= 0)
+                throw new BusinessException("InvalidFileId", "File ID must be greater than zero.");
+
             const string sql = @"
                 UPDATE InvoiceAttachments 
                 SET IsReceived = true 
                 WHERE FileId = @FileId;
             ";
 
-            try
-            {
-                await _dbConnection.ExecuteAsync(sql, new { FileId = fileId });
-            }
-            catch (Exception ex)
-            {
-                throw new TechnicalException("DatabaseError", $"Error marking attachment as received: {ex.Message}");
-            }
+            await _dbConnection.ExecuteAsync(sql, new { FileId = fileId });
         }
 
         public async Task<bool> AllAttachmentsReceivedAsync(Guid invoiceId)
         {
             if (invoiceId == Guid.Empty)
-                throw new BusinessException("InvalidInvoiceId", "InvoiceId cannot be empty.");
+                throw new BusinessException("InvalidInvoiceId", "Invoice ID cannot be empty.");
 
             const string sql = @"
                 SELECT COUNT(1) 
@@ -127,15 +102,8 @@ namespace ProjectName.Services
                 WHERE InvoiceId = @InvoiceId AND IsReceived = false;
             ";
 
-            try
-            {
-                var count = await _dbConnection.ExecuteScalarAsync<int>(sql, new { InvoiceId = invoiceId });
-                return count == 0;
-            }
-            catch (Exception ex)
-            {
-                throw new TechnicalException("DatabaseError", $"Error checking if all attachments are received: {ex.Message}");
-            }
+            var count = await _dbConnection.ExecuteScalarAsync<int>(sql, new { InvoiceId = invoiceId });
+            return count == 0;
         }
     }
 }
