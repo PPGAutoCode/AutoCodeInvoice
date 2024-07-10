@@ -67,6 +67,9 @@ namespace ProjectName.Services
             if (invoiceId == Guid.Empty)
                 throw new BusinessException("InvalidInvoiceId", "Invoice ID cannot be empty.");
 
+            if (attachmentId <= 0)
+                throw new BusinessException("InvalidAttachmentId", "Attachment ID must be greater than zero.");
+
             const string sql = @"
                 SELECT COUNT(1) 
                 FROM InvoiceAttachments 
@@ -84,7 +87,7 @@ namespace ProjectName.Services
 
             const string sql = @"
                 UPDATE InvoiceAttachments 
-                SET IsReceived = true 
+                SET IsReceived = 1 
                 WHERE FileId = @FileId;
             ";
 
@@ -99,7 +102,7 @@ namespace ProjectName.Services
             const string sql = @"
                 SELECT COUNT(1) 
                 FROM InvoiceAttachments 
-                WHERE InvoiceId = @InvoiceId AND IsReceived = false;
+                WHERE InvoiceId = @InvoiceId AND IsReceived = 0;
             ";
 
             var count = await _dbConnection.ExecuteScalarAsync<int>(sql, new { InvoiceId = invoiceId });
