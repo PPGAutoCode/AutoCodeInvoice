@@ -17,14 +17,13 @@ namespace ProjectName.Services
 
         public InvoiceAttachmentService(IDbConnection dbConnection)
         {
-            _dbConnection = dbConnection;
+            _dbConnection = dbConnection ?? throw new ArgumentNullException(nameof(dbConnection));
         }
 
         public async Task AddInvoiceAttachmentsAsync(Guid invoiceId, List<int> fileIds)
         {
             if (invoiceId == Guid.Empty)
                 throw new BusinessException("InvalidInvoiceId", "Invoice ID cannot be empty.");
-
             if (fileIds == null || !fileIds.Any())
                 throw new BusinessException("InvalidFileIds", "File IDs cannot be null or empty.");
 
@@ -66,7 +65,6 @@ namespace ProjectName.Services
         {
             if (invoiceId == Guid.Empty)
                 throw new BusinessException("InvalidInvoiceId", "Invoice ID cannot be empty.");
-
             if (attachmentId <= 0)
                 throw new BusinessException("InvalidAttachmentId", "Attachment ID must be greater than zero.");
 
