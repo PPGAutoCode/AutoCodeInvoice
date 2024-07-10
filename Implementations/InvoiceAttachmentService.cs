@@ -41,7 +41,10 @@ namespace ProjectName.Services
                 VALUES (@Id, @InvoiceId, @FileId, @IsReceived);
             ";
 
-            await _dbConnection.ExecuteAsync(sql, invoiceAttachments);
+            foreach (var attachment in invoiceAttachments)
+            {
+                await _dbConnection.ExecuteAsync(sql, attachment);
+            }
         }
 
         public async Task<bool> InvoiceExistsAsync(Guid invoiceId)
@@ -76,12 +79,9 @@ namespace ProjectName.Services
 
         public async Task MarkAsReceivedAsync(int fileId)
         {
-            if (fileId <= 0)
-                throw new BusinessException(400, "One or more validation errors occurred.", "FileId must be greater than zero.");
-
             const string sql = @"
                 UPDATE InvoiceAttachments 
-                SET IsReceived = true 
+                SET IsReceived = 1 
                 WHERE FileId = @FileId;
             ";
 
@@ -96,7 +96,7 @@ namespace ProjectName.Services
             const string sql = @"
                 SELECT COUNT(1) 
                 FROM InvoiceAttachments 
-                WHERE InvoiceId = @InvoiceId AND IsReceived = false;
+                WHERE InvoiceId = @InvoiceId AND IsReceived = 0;
             ";
 
             var count = await _dbConnection.ExecuteScalarAsync<int>(sql, new { InvoiceId = invoiceId });
